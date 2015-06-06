@@ -96,6 +96,7 @@
     <Compile Include="App_Start\Program.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Infrastructure\Conventions\Config.cs" />
+    <Compile Include="Infrastructure\DeliveryRepository.cs" />
     <Compile Include="Infrastructure\Entities\Entity.cs" />
     <Compile Include="Infrastructure\Entities\Group.cs" />
     <Compile Include="Infrastructure\Entities\ItemType.cs" />
@@ -103,6 +104,8 @@
     <Compile Include="Infrastructure\Entities\Item.cs" />
     <Compile Include="Infrastructure\Entities\SubItem.cs" />
     <Compile Include="Infrastructure\GenericUnitOfWork.cs" />
+    <Compile Include="Infrastructure\IDeliveryRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -10,22 +10,39 @@ namespace Delivery.Infrastructure
 {
     public class GenericUnitOfWork : IDisposable
     {
-        public ISessionFactory Factory { get; set; }
+        public ISessionFactory Session { get; set; }
         public ITransaction Transaction { get; set; }
 
         public GenericUnitOfWork(string connectionString)
         {
-            Factory = Fluently.Configure().Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey(connectionString)))
+            Session = Fluently.Configure().Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey(connectionString)))
                 .Mappings(val => val.AutoMappings.Add(AutoMap.AssemblyOf<Entity>(new Config())))
                 .BuildSessionFactory();
 
-            var openSession = Factory.OpenSession();
+            var openSession = Session.OpenSession();
             Transaction = openSession.BeginTransaction();
+        }
+
+        public void Commit()
+        {
+            if (Transaction != null && Transaction.IsActive)
+            {
+                Transaction.Commit();
+            }
+        }
+
+        public void Rollback()
+        {
+            if (Transaction != null && Transaction.IsActive)
+            {
+                Transaction.Rollback();
+            }
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Session?.Dispose();
+            Transaction?.Dispose();
         }
     }
 }
