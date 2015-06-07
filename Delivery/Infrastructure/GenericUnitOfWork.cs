@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Security.Cryptography.X509Certificates;
 using Delivery.Infrastructure.Conventions;
 using Delivery.Infrastructure.Entities;
 using FluentNHibernate.Automapping;
@@ -8,7 +10,7 @@ using NHibernate;
 
 namespace Delivery.Infrastructure
 {
-    public class GenericUnitOfWork : IDisposable
+    public class GenericUnitOfWork : IDisposable, IGenericUnitOfWork    
     {
         public ISessionFactory Session { get; set; }
         public ITransaction Transaction { get; set; }
@@ -20,7 +22,7 @@ namespace Delivery.Infrastructure
                 .BuildSessionFactory();
 
             var openSession = Session.OpenSession();
-            Transaction = openSession.BeginTransaction();
+            Transaction = openSession.BeginTransaction(IsolationLevel.ReadCommitted);
         }
 
         public void Commit()
