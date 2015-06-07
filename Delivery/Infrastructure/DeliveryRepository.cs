@@ -1,10 +1,12 @@
 ﻿namespace Delivery.Infrastructure
 {
-    public class DeliveryRepository : IDeliveryRepository
+    public class DeliveryRepository<T> : GenericRepository<T> where T : class, IDeliveryRepository
     {
-        public DeliveryRepository(UnitOfWork unitOfWork)
+        private readonly GenericUnitOfWork _unitOfWork;
+
+        public DeliveryRepository(GenericUnitOfWork unitOfWork) : base(unitOfWork.Session)
         {
-            throw new System.NotImplementedException();
+            _unitOfWork = unitOfWork;
         }
     }
 }

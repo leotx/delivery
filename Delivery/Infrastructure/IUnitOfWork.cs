@@ -2,6 +2,6 @@
 {
     public interface IUnitOfWork
     {
-        IDeliveryRepository DeliveryRepository { get; set; }
+        IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class;
     }
 }

@@ -103,8 +103,10 @@
     <Compile Include="Infrastructure\Entities\Product.cs" />
     <Compile Include="Infrastructure\Entities\Item.cs" />
     <Compile Include="Infrastructure\Entities\SubItem.cs" />
+    <Compile Include="Infrastructure\GenericRepository.cs" />
     <Compile Include="Infrastructure\GenericUnitOfWork.cs" />
     <Compile Include="Infrastructure\IDeliveryRepository.cs" />
+    <Compile Include="Infrastructure\IGenericRepository.cs" />
     <Compile Include="Infrastructure\IGenericUnitOfWork.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />

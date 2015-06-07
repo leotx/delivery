@@ -12,17 +12,17 @@ namespace Delivery.Infrastructure
 {
     public class GenericUnitOfWork : IDisposable, IGenericUnitOfWork    
     {
-        public ISessionFactory Session { get; set; }
-        public ITransaction Transaction { get; set; }
+        public ISession Session { get; private set; }
+        public ITransaction Transaction { get; }
 
         public GenericUnitOfWork(string connectionString)
         {
-            Session = Fluently.Configure().Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey(connectionString)))
+            var sessionFactory = Fluently.Configure().Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey(connectionString)))
                 .Mappings(val => val.AutoMappings.Add(AutoMap.AssemblyOf<Entity>(new Config())))
                 .BuildSessionFactory();
 
-            var openSession = Session.OpenSession();
-            Transaction = openSession.BeginTransaction(IsolationLevel.ReadCommitted);
+            Session = sessionFactory.OpenSession();
+            Transaction = Session.BeginTransaction(IsolationLevel.ReadCommitted);
         }
 
         public void Commit()

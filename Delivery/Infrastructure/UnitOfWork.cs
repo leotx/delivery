@@ -1,12 +1,21 @@
-﻿namespace Delivery.Infrastructure
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Delivery.Infrastructure
 {
     public class UnitOfWork : GenericUnitOfWork, IUnitOfWork
     {
-        public UnitOfWork() : base("defaultConnection")
+        private Dictionary<Type, object> _repositories;
+
+        public UnitOfWork(Dictionary<Type, object> repositories) : base("defaultConnection")
         {
-            DeliveryRepository = new DeliveryRepository(this);
+            _repositories = repositories;
         }
 
-        public IDeliveryRepository DeliveryRepository { get; set; }
+        public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class
+        {
+            return new GenericRepository<TEntity>(Session);
+        }
     }
 }
