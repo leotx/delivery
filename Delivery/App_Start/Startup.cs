@@ -1,9 +1,4 @@
-﻿using Delivery.Infrastructure.Conventions;
-using Delivery.Infrastructure.Entities;
-using FluentNHibernate.Automapping;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
-using Microsoft.Owin.Cors;
+﻿using Microsoft.Owin.Cors;
 using Owin;
 
 namespace Delivery
@@ -13,6 +8,7 @@ namespace Delivery
         public void Configuration(IAppBuilder app)
         {
             app.UseCors(CorsOptions.AllowAll);
+            app.UseNancy();
         }
     }
 }
