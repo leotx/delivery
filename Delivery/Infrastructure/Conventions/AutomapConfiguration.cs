@@ -4,7 +4,7 @@ using FluentNHibernate.Automapping;
 
 namespace Delivery.Infrastructure.Conventions
 {
-    public class Config : DefaultAutomappingConfiguration
+    public class AutomapConfiguration : DefaultAutomappingConfiguration
     {
         public override bool ShouldMap(Type type)
         {

@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Delivery.Infrastructure
+﻿namespace Delivery.Infrastructure
 {
     public class UnitOfWork : GenericUnitOfWork, IUnitOfWork
     {
-        private Dictionary<Type, object> _repositories;
-
-        public UnitOfWork(Dictionary<Type, object> repositories) : base("defaultConnection")
+        public UnitOfWork() : base("defaultConnection")
         {
-            _repositories = repositories;
         }
 
         public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class
