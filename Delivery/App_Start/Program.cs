@@ -1,18 +1,28 @@
-﻿using Microsoft.Owin.Hosting;
+﻿using System;
+using Microsoft.Owin.Hosting;
+using NHibernate.Tool.hbm2ddl;
 
 namespace Delivery
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var httpLocalHost = "http://localhost:9090";
             using (WebApp.Start<Startup>(httpLocalHost))
             {
-                System.Console.WriteLine("Listening on " + httpLocalHost);
-                System.Console.WriteLine("Press [enter] to quit...");
-                System.Console.ReadLine();
+                CreateDatabase();
+                Console.WriteLine("Listening on " + httpLocalHost);
+                Console.WriteLine("Press [enter] to quit...");
+                Console.ReadLine();
             }
+        }
+
+        private static void CreateDatabase()
+        {
+            var fluentConfiguration = DeliveryConfiguration.Configuration();
+            var exportDatabase = new SchemaExport(fluentConfiguration.BuildConfiguration());
+            exportDatabase.Execute(true, true, false);
         }
     }
 }

@@ -93,9 +93,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\DeliveryConfiguration.cs" />
     <Compile Include="App_Start\Program.cs" />
     <Compile Include="App_Start\Startup.cs" />
-    <Compile Include="Infrastructure\Conventions\Config.cs" />
+    <Compile Include="Infrastructure\Conventions\AutomapConfiguration.cs" />
     <Compile Include="Infrastructure\DeliveryRepository.cs" />
     <Compile Include="Infrastructure\Entities\Entity.cs" />
     <Compile Include="Infrastructure\Entities\Group.cs" />
@@ -114,7 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="connections.config" />
+    <None Include="connections.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

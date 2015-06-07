@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Security.Cryptography.X509Certificates;
 using Delivery.Infrastructure.Conventions;
 using Delivery.Infrastructure.Entities;
 using FluentNHibernate.Automapping;
@@ -17,9 +16,7 @@ namespace Delivery.Infrastructure
 
         public GenericUnitOfWork(string connectionString)
         {
-            var sessionFactory = Fluently.Configure().Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey(connectionString)))
-                .Mappings(val => val.AutoMappings.Add(AutoMap.AssemblyOf<Entity>(new Config())))
-                .BuildSessionFactory();
+            var sessionFactory = DeliveryConfiguration.Configuration(connectionString).BuildSessionFactory();
 
             Session = sessionFactory.OpenSession();
             Transaction = Session.BeginTransaction(IsolationLevel.ReadCommitted);
