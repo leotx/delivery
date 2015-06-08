@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Data;
-using Delivery.Infrastructure.Conventions;
-using Delivery.Infrastructure.Entities;
-using FluentNHibernate.Automapping;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
 using NHibernate;
 
 namespace Delivery.Infrastructure
 {
-    public class GenericUnitOfWork : IDisposable, IGenericUnitOfWork    
+    public class GenericUnitOfWork : IDisposable, IGenericUnitOfWork
     {
-        public ISession Session { get; private set; }
-        public ITransaction Transaction { get; }
-
-        public GenericUnitOfWork(string connectionString)
+        protected GenericUnitOfWork(string connectionString)
         {
             var sessionFactory = DeliveryConfiguration.Configuration(connectionString).BuildSessionFactory();
 
             Session = sessionFactory.OpenSession();
             Transaction = Session.BeginTransaction(IsolationLevel.ReadCommitted);
+        }
+
+        public ISession Session { get; }
+        private ITransaction Transaction { get; }
+
+        public void Dispose()
+        {
+            Session?.Dispose();
+            Transaction?.Dispose();
         }
 
         public void Commit()
@@ -36,12 +37,6 @@ namespace Delivery.Infrastructure
             {
                 Transaction.Rollback();
             }
-        }
-
-        public void Dispose()
-        {
-            Session?.Dispose();
-            Transaction?.Dispose();
         }
     }
 }

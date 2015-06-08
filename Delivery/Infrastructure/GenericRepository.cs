@@ -22,7 +22,7 @@ namespace Delivery.Infrastructure
 
         public bool Add(System.Collections.Generic.IEnumerable<T> items)
         {
-            foreach (T item in items)
+            foreach (var item in items)
             {
                 _session.Save(item);
             }
@@ -43,7 +43,7 @@ namespace Delivery.Infrastructure
 
         public bool Delete(System.Collections.Generic.IEnumerable<T> entities)
         {
-            foreach (T entity in entities)
+            foreach (var entity in entities)
             {
                 _session.Delete(entity);
             }

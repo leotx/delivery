@@ -6,9 +6,9 @@ namespace Delivery.Interface
 {
     public class ItemController : NancyModule
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ItemController(UnitOfWork unitOfWork) : base("/item")
+        public ItemController(IUnitOfWork unitOfWork) : base("/item")
         {
             _unitOfWork = unitOfWork;
 
