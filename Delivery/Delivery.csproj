@@ -105,7 +105,7 @@
     <Compile Include="App_Start\Program.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Infrastructure\Conventions\AutomapConfiguration.cs" />
-    <Compile Include="Infrastructure\DeliveryRepository.cs" />
+    <Compile Include="Infrastructure\ItemRepository.cs" />
     <Compile Include="Infrastructure\Entities\Entity.cs" />
     <Compile Include="Infrastructure\Entities\Group.cs" />
     <Compile Include="Infrastructure\Entities\ItemType.cs" />
@@ -114,7 +114,7 @@
     <Compile Include="Infrastructure\Entities\SubItem.cs" />
     <Compile Include="Infrastructure\GenericRepository.cs" />
     <Compile Include="Infrastructure\GenericUnitOfWork.cs" />
-    <Compile Include="Infrastructure\IDeliveryRepository.cs" />
+    <Compile Include="Infrastructure\IItemRepository.cs" />
     <Compile Include="Infrastructure\IGenericRepository.cs" />
     <Compile Include="Infrastructure\IGenericUnitOfWork.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />

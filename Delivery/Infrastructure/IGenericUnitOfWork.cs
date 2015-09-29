@@ -4,5 +4,6 @@
     {
         void Commit();
         void Rollback();
+        IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class;
     }
 }

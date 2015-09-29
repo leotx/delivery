@@ -1,73 +1,55 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using NHibernate;
 using NHibernate.Linq;
+using NHibernate.Util;
 
 namespace Delivery.Infrastructure
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly ISession _session;
+        private readonly ISession _currentSession;
 
-        public GenericRepository(ISession session)
+        public GenericRepository(ISession currentSession)
         {
-            _session = session;
+            _currentSession = currentSession;
         }
 
-        public bool Add(T entity)
+        public void Add(T entity)
         {
-            _session.Save(entity);
-            return true;
+            _currentSession.Save(entity);
         }
 
-        public bool Add(System.Collections.Generic.IEnumerable<T> items)
+        public void AddRange(IEnumerable<T> entities)
         {
-            foreach (var item in items)
-            {
-                _session.Save(item);
-            }
-            return true;
+            entities?.ForEach(entity => _currentSession.Save(entity));
         }
 
-        public bool Update(T entity)
+        public void Update(T entity)
         {
-            _session.Update(entity);
-            return true;
+            _currentSession.Update(entity);
         }
 
-        public bool Delete(T entity)
+        public void Delete(T entity)
         {
-            _session.Delete(entity);
-            return true;
+            _currentSession.Delete(entity);
         }
 
-        public bool Delete(System.Collections.Generic.IEnumerable<T> entities)
+        public void DeleteRange(IEnumerable<T> entities)
         {
-            foreach (var entity in entities)
-            {
-                _session.Delete(entity);
-            }
-            return true;
+            entities?.ForEach(entity => _currentSession.Delete(entity));
         }
 
         public IQueryable<T> All()
         {
-            return _session.Query<T>();
+            return _currentSession.Query<T>();
         }
 
-        public T FindBy(System.Linq.Expressions.Expression<Func<T, bool>> expression)
+        public T FindById(long id)
         {
-            return FilterBy(expression).SingleOrDefault();
-        }
-
-        public IQueryable<T> FilterBy(System.Linq.Expressions.Expression<Func<T, bool>> expression)
-        {
-            return All().Where(expression).AsQueryable();
-        }
-
-        public T FindBy(int id)
-        {
-            return _session.Get<T>(id);
+            return _currentSession.Get<T>(id);
         }
     }
 }

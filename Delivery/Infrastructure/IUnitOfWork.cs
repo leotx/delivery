@@ -1,7 +1,6 @@
 ﻿namespace Delivery.Infrastructure
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IGenericUnitOfWork
     {
-        IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class;
     }
 }

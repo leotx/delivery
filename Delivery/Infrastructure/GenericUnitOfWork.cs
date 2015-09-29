@@ -6,6 +6,9 @@ namespace Delivery.Infrastructure
 {
     public class GenericUnitOfWork : IDisposable, IGenericUnitOfWork
     {
+        public ISession Session { get; }
+        private ITransaction Transaction { get; }
+
         protected GenericUnitOfWork(string connectionString)
         {
             var sessionFactory = DeliveryConfiguration.Configuration(connectionString).BuildSessionFactory();
@@ -13,9 +16,6 @@ namespace Delivery.Infrastructure
             Session = sessionFactory.OpenSession();
             Transaction = Session.BeginTransaction(IsolationLevel.ReadCommitted);
         }
-
-        public ISession Session { get; }
-        private ITransaction Transaction { get; }
 
         public void Dispose()
         {
@@ -37,6 +37,11 @@ namespace Delivery.Infrastructure
             {
                 Transaction.Rollback();
             }
+        }
+
+        public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class
+        {
+            return new GenericRepository<TEntity>(Session);
         }
     }
 }
