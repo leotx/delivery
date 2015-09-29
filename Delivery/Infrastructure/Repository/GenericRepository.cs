@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using NHibernate;
 using NHibernate.Linq;
 using NHibernate.Util;
 
-namespace Delivery.Infrastructure
+namespace Delivery.Infrastructure.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {

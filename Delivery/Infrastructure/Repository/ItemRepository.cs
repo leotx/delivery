@@ -1,6 +1,7 @@
 ﻿using Delivery.Infrastructure.Entities;
+using Delivery.Infrastructure.UnitOfWork;
 
-namespace Delivery.Infrastructure
+namespace Delivery.Infrastructure.Repository
 {
     public class ItemRepository : GenericRepository<Item>, IItemRepository
     {

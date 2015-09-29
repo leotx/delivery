@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Delivery.Infrastructure
+namespace Delivery.Infrastructure.Repository
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {

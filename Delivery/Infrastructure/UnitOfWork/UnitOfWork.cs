@@ -1,4 +1,4 @@
-﻿namespace Delivery.Infrastructure
+﻿namespace Delivery.Infrastructure.UnitOfWork
 {
     public class UnitOfWork : GenericUnitOfWork, IUnitOfWork
     {

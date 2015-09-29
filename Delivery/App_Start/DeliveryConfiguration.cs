@@ -11,7 +11,7 @@ namespace Delivery
         public static FluentConfiguration Configuration(string connectionString = "defaultConnection")
         {
             var factory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey("defaultConnection")))
+                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey(connectionString)))
                 .Mappings(val => val.AutoMappings.Add(AutoMap.AssemblyOf<Entity>(new AutomapConfiguration())));
 
             return factory;

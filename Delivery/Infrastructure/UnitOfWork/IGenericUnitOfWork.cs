@@ -1,4 +1,6 @@
-﻿namespace Delivery.Infrastructure
+﻿using Delivery.Infrastructure.Repository;
+
+namespace Delivery.Infrastructure.UnitOfWork
 {
     public interface IGenericUnitOfWork
     {

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Data;
+using Delivery.Infrastructure.Repository;
 using NHibernate;
 
-namespace Delivery.Infrastructure
+namespace Delivery.Infrastructure.UnitOfWork
 {
     public class GenericUnitOfWork : IDisposable, IGenericUnitOfWork
     {

@@ -1,8 +1,9 @@
 ﻿using Delivery.Infrastructure;
 using Delivery.Infrastructure.Entities;
+using Delivery.Infrastructure.UnitOfWork;
 using Nancy;
 
-namespace Delivery.Interface
+namespace Delivery.Interface.Controller
 {
     public class ItemController : NancyModule
     {

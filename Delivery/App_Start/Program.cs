@@ -8,7 +8,8 @@ namespace Delivery
     {
         private static void Main(string[] args)
         {
-            var httpLocalHost = "http://localhost:9090";
+            const string httpLocalHost = "http://localhost:9090";
+
             using (WebApp.Start<Startup>(httpLocalHost))
             {
                 CreateDatabase();

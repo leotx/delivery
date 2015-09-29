@@ -105,21 +105,21 @@
     <Compile Include="App_Start\Program.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Infrastructure\Conventions\AutomapConfiguration.cs" />
-    <Compile Include="Infrastructure\ItemRepository.cs" />
     <Compile Include="Infrastructure\Entities\Entity.cs" />
     <Compile Include="Infrastructure\Entities\Group.cs" />
     <Compile Include="Infrastructure\Entities\ItemType.cs" />
     <Compile Include="Infrastructure\Entities\Product.cs" />
     <Compile Include="Infrastructure\Entities\Item.cs" />
     <Compile Include="Infrastructure\Entities\SubItem.cs" />
-    <Compile Include="Infrastructure\GenericRepository.cs" />
-    <Compile Include="Infrastructure\GenericUnitOfWork.cs" />
-    <Compile Include="Infrastructure\IItemRepository.cs" />
-    <Compile Include="Infrastructure\IGenericRepository.cs" />
-    <Compile Include="Infrastructure\IGenericUnitOfWork.cs" />
-    <Compile Include="Infrastructure\IUnitOfWork.cs" />
-    <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Interface\ItemController.cs" />
+    <Compile Include="Infrastructure\Repository\GenericRepository.cs" />
+    <Compile Include="Infrastructure\Repository\IGenericRepository.cs" />
+    <Compile Include="Infrastructure\Repository\IItemRepository.cs" />
+    <Compile Include="Infrastructure\Repository\ItemRepository.cs" />
+    <Compile Include="Infrastructure\UnitOfWork\GenericUnitOfWork.cs" />
+    <Compile Include="Infrastructure\UnitOfWork\IGenericUnitOfWork.cs" />
+    <Compile Include="Infrastructure\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Interface\Controller\ItemController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -129,7 +129,9 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interface\Service\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
